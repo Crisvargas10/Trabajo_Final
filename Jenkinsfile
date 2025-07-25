@@ -13,5 +13,17 @@ pipeline {
                 sh 'python extract.py'
             }
         }
+
+        stage('Ejecutar Transform') {
+            steps {
+                sh 'python transform.py'
+            }
+        }
+
+        stage('Ejecutar Lectura') {
+            steps {
+                sh 'python lectura.py'
+            }
+        }
     }
 }

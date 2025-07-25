@@ -13,8 +13,9 @@ if req.status_code==200:
 else:
     print("Error Request")
 
-df = pd.DataFrame(data) 
+# df = pd.DataFrame(data)
+datos = pd.DataFrame(data) 
 
 
 if __name__ == "__main__":
-    print(df.head())
+    print(datos.head())
