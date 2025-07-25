@@ -7,7 +7,7 @@ url= "http://api.open-notify.org/iss-now.json"
 req= requests.get(url)
 
 if req.status_code==200:
-    print("Good Request")
+    print("Request Exitoso")
     data= req.json()
        
 else:

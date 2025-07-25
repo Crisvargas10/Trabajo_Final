@@ -4,13 +4,13 @@ pipeline {
     stages {
         stage('Clonar repositorio') {
             steps {
-                git branch: 'develop', url: 'https://github.com/jBujaico/etl-api-rest.git'
+                git branch: 'develop', url: 'https://github.com/Crisvargas10/Trabajo_Final.git'
             }
         }
 
         stage('Ejecutar ETL') {
             steps {
-                sh 'python lectura.py'
+                sh 'python extract.py'
             }
         }
     }
