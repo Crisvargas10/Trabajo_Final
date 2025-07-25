@@ -1,6 +1,3 @@
-from extract import df
-import pandas as pd
-
 # # Rename columns for better clarity
 # df.columns = ['risk_value', 'date']
 
