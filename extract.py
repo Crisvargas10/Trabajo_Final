@@ -1,7 +1,7 @@
 import pandas as pd
 import requests
 
-url= "https://api.argentinadatos.com/v1/finanzas/indices/riesgo-pais"
+# url= "https://api.argentinadatos.com/v1/finanzas/indices/riesgo-pais"
 url= "http://api.open-notify.org/iss-now.json"
 
 req= requests.get(url)
@@ -12,10 +12,16 @@ if req.status_code==200:
        
 else:
     print("Error Request")
+    data = None
 
-# df = pd.DataFrame(data)
-datos = pd.DataFrame(data) 
+# # df = pd.DataFrame(data)
+# datos = pd.DataFrame(data) 
+
+# if __name__ == "__main__":
+#     print(datos.head())
 
 
+
+# Solo mostramos los datos si se ejecuta directamente este archivo
 if __name__ == "__main__":
-    print(datos.head())
+    print(data)

@@ -14,11 +14,11 @@ pipeline {
             }
         }
 
-        // stage('Ejecutar Transform') {
-        //     steps {
-        //         sh 'python transform.py'
-        //     }
-        // }
+        stage('Ejecutar Transform') {
+            steps {
+                sh 'python transform.py'
+            }
+        }
 
         // stage('Ejecutar Lectura') {
         //     steps {

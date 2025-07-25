@@ -1,3 +1,24 @@
+from extract import data
+import pandas as pd
+from datetime import datetime
+
+# Extraemos los datos necesarios
+timestamp = data.get("timestamp")
+position = data.get("iss_position", {})
+
+# Creamos un DataFrame con los valores deseados
+df = pd.DataFrame([{
+    "datetime": datetime.utcfromtimestamp(timestamp),
+    "latitude": float(position.get("latitude", 0)),
+    "longitude": float(position.get("longitude", 0))
+}])
+
+# Guardamos el DataFrame transformado
+df.to_csv("data_output/transformed_data.csv", index=False)
+
+# Mostramos el resultado por consola
+print(df.head())
+
 # # Rename columns for better clarity
 # df.columns = ['risk_value', 'date']
 
@@ -21,56 +42,3 @@
 
 # # Save the transformed DataFrame for the load.py script
 # df_clean.to_csv("data_output/transformed_data.csv", index=False)
-
-#####################
-# datos = {
-#     "timestamp": [data["timestamp"]],
-#     "latitude": [data["iss_position"]["latitude"]],
-#     "longitude": [data["iss_position"]["longitude"]],
-#     "message": [data["message"]]
-# }
-
-# # Crear DataFrame crudo
-# df = pd.DataFrame(datos)
-
-# # Transformar: convertir timestamp a fecha legible y renombrar columnas
-# df["timestamp"] = pd.to_datetime(df["timestamp"], unit='s')
-# df = df.rename(columns={
-#     "timestamp": "Fecha y hora (UTC)",
-#     "latitude": "Latitud",
-#     "longitude": "Longitud",
-#     "message": "Mensaje"
-# })
-
-# # Exportar a CSV
-# df.to_csv("data_output/transformed_data.csv", index=False, encoding='utf-8-sig')
-# print("CSV exportado: transformed_data.csv")
-###################################
-
-import pandas as pd
-import os
-from extract import obtener_datos
-
-# Crear carpeta si no existe
-output_dir = "data_output"
-os.makedirs(output_dir, exist_ok=True)  # ← esto crea la carpeta si no existe
-
-# Llamamos la función para obtener los datos
-df = obtener_datos()
-
-# Validamos que tenga datos
-if df.empty:
-    print("❌ No se encontraron datos para transformar.")
-else:
-    # Transformar timestamp a formato legible
-    df["timestamp"] = pd.to_datetime(df["timestamp"], unit='s')
-    df = df.rename(columns={
-        "timestamp": "Fecha y hora (UTC)",
-        "latitude": "Latitud",
-        "longitude": "Longitud",
-        "message": "Mensaje"
-    })
-
-    # Exportar a CSV
-    df.to_csv(os.path.join(output_dir, "transformed_data.csv"), index=False, encoding='utf-8-sig')
-    print("✅ CSV exportado: data_output/transformed_data.csv")
