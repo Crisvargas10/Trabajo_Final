@@ -8,9 +8,9 @@ pipeline {
             }
         }
 
-        stage('Ejecutar Transform') {
+        stage('Ejecutar ETL') {
             steps {
-                sh 'python transform.py'
+                sh 'python extract.py'
             }
         }
 
