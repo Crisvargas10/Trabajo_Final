@@ -1,7 +1,8 @@
 import pandas as pd
 import requests
 
-url= "https://api.argentinadatos.com/v1/finanzas/indices/riesgo-pais"
+# url= "https://api.argentinadatos.com/v1/finanzas/indices/riesgo-pais"
+url= "http://api.open-notify.org/iss-now.json"
 
 req= requests.get(url)
 
