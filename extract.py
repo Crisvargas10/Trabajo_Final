@@ -1,5 +1,4 @@
-import pandas as pd
-import requests
+
 
 # url= "https://api.argentinadatos.com/v1/finanzas/indices/riesgo-pais"
 # url= "http://api.open-notify.org/iss-now.json"
@@ -20,6 +19,8 @@ import requests
 # if __name__ == "__main__":
 #     print(datos.head())
 ##################################3
+import pandas as pd
+import requests
 
 def obtener_datos():
     url = "http://api.open-notify.org/iss-now.json"

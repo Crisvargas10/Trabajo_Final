@@ -48,7 +48,12 @@
 ###################################
 
 import pandas as pd
-from extract import obtener_datos  # <- Importamos la función, no el df
+import os
+from extract import obtener_datos
+
+# Crear carpeta si no existe
+output_dir = "data_output"
+os.makedirs(output_dir, exist_ok=True)  # ← esto crea la carpeta si no existe
 
 # Llamamos la función para obtener los datos
 df = obtener_datos()
@@ -67,5 +72,5 @@ else:
     })
 
     # Exportar a CSV
-    df.to_csv("data_output/transformed_data.csv", index=False, encoding='utf-8-sig')
+    df.to_csv(os.path.join(output_dir, "transformed_data.csv"), index=False, encoding='utf-8-sig')
     print("✅ CSV exportado: data_output/transformed_data.csv")
