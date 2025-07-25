@@ -25,25 +25,50 @@ import pandas as pd
 # # Save the transformed DataFrame for the load.py script
 # df_clean.to_csv("data_output/transformed_data.csv", index=False)
 
-datos = {
-    "timestamp": [data["timestamp"]],
-    "latitude": [data["iss_position"]["latitude"]],
-    "longitude": [data["iss_position"]["longitude"]],
-    "message": [data["message"]]
-}
+#####################
+# datos = {
+#     "timestamp": [data["timestamp"]],
+#     "latitude": [data["iss_position"]["latitude"]],
+#     "longitude": [data["iss_position"]["longitude"]],
+#     "message": [data["message"]]
+# }
 
-# Crear DataFrame crudo
-df = pd.DataFrame(datos)
+# # Crear DataFrame crudo
+# df = pd.DataFrame(datos)
 
-# Transformar: convertir timestamp a fecha legible y renombrar columnas
-df["timestamp"] = pd.to_datetime(df["timestamp"], unit='s')
-df = df.rename(columns={
-    "timestamp": "Fecha y hora (UTC)",
-    "latitude": "Latitud",
-    "longitude": "Longitud",
-    "message": "Mensaje"
-})
+# # Transformar: convertir timestamp a fecha legible y renombrar columnas
+# df["timestamp"] = pd.to_datetime(df["timestamp"], unit='s')
+# df = df.rename(columns={
+#     "timestamp": "Fecha y hora (UTC)",
+#     "latitude": "Latitud",
+#     "longitude": "Longitud",
+#     "message": "Mensaje"
+# })
 
-# Exportar a CSV
-df.to_csv("data_output/transformed_data.csv", index=False, encoding='utf-8-sig')
-print("CSV exportado: transformed_data.csv")
+# # Exportar a CSV
+# df.to_csv("data_output/transformed_data.csv", index=False, encoding='utf-8-sig')
+# print("CSV exportado: transformed_data.csv")
+####################################
+
+import pandas as pd
+from extract import obtener_datos
+
+# Obtener el DataFrame desde extract.py
+df = obtener_datos()
+
+# Validar que tenga datos
+if df.empty:
+    print("❌ No se pudo obtener datos para transformar.")
+else:
+    # Transformar: convertir timestamp a fecha legible y renombrar columnas
+    df["timestamp"] = pd.to_datetime(df["timestamp"], unit='s')
+    df = df.rename(columns={
+        "timestamp": "Fecha y hora (UTC)",
+        "latitude": "Latitud",
+        "longitude": "Longitud",
+        "message": "Mensaje"
+    })
+
+    # Exportar a CSV
+    df.to_csv("data_output/transformed_data.csv", index=False, encoding='utf-8-sig')
+    print("✅ CSV exportado: data_output/transformed_data.csv")
