@@ -20,10 +20,10 @@ pipeline {
             }
         }
 
-        // stage('Ejecutar Lectura') {
-        //     steps {
-        //         sh 'python lectura.py'
-        //     }
-        // }
+        stage('Ejecutar Lectura') {
+            steps {
+                sh 'python lectura.py'
+            }
+        }
     }
 }
