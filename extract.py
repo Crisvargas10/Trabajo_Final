@@ -26,7 +26,7 @@ def obtener_datos():
     req = requests.get(url)
 
     if req.status_code == 200:
-        print("Request Exitoso")
+        print("✅ Request Exitoso")
         data = req.json()
         datos = pd.DataFrame([{
             "timestamp": data["timestamp"],
@@ -36,10 +36,10 @@ def obtener_datos():
         }])
         return datos
     else:
-        print("Error en el Request")
-        return pd.DataFrame()  # retorna vacío si falla
+        print("❌ Error en el Request")
+        return pd.DataFrame()  # Retorna vacío si falla
 
-# Solo si ejecutas este archivo directamente
+# Esto es solo si ejecutas extract.py directamente
 if __name__ == "__main__":
     df = obtener_datos()
     print(df.head())

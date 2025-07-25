@@ -48,19 +48,19 @@ import pandas as pd
 # # Exportar a CSV
 # df.to_csv("data_output/transformed_data.csv", index=False, encoding='utf-8-sig')
 # print("CSV exportado: transformed_data.csv")
-####################################
+###################################
 
 import pandas as pd
-from extract import obtener_datos
+from extract import obtener_datos  # <- Importamos la función, no el df
 
-# Obtener el DataFrame desde extract.py
+# Llamamos la función para obtener los datos
 df = obtener_datos()
 
-# Validar que tenga datos
+# Validamos que tenga datos
 if df.empty:
-    print("❌ No se pudo obtener datos para transformar.")
+    print("❌ No se encontraron datos para transformar.")
 else:
-    # Transformar: convertir timestamp a fecha legible y renombrar columnas
+    # Transformar timestamp a formato legible
     df["timestamp"] = pd.to_datetime(df["timestamp"], unit='s')
     df = df.rename(columns={
         "timestamp": "Fecha y hora (UTC)",
