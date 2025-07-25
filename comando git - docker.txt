@@ -1,0 +1,52 @@
+#comandos git
+######PRIMER EJEMPLO DESDE REPO LOCAL A GIT HUB###############
+
+git init
+
+git remote add origin https://github.com/jBujaico/etl-risk-python-3840.git
+
+git status
+
+git add .
+
+git commit -m "ejemplo"
+
+git push -u origin <nombre_rama>
+
+git branch
+
+git branch develop
+
+git checkout develop
+
+git add .
+
+git commit -m "update develop"
+
+# Estás en la rama develop NO RECOMENDADO
+git checkout master
+git merge develop
+git push origin master
+
+##############DE GIT HUB A LOCAL#########################
+
+git clone <url del su repo de git hub>
+
+git checkout develop
+git push -u origin develop
+
+##############CONSTRUIR IMAGEN DE DOCKER#########################
+
+docker build -t jenkins-python .
+
+##############CREAR EL CONTAINER#########################
+
+docker run -p 8082:8080 -p 50001:50000 --name jenkins-python-container jenkins-python
+
+
+
+
+
+
+
+
