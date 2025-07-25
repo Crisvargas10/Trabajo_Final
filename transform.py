@@ -1,6 +1,10 @@
 from extract import data
 import pandas as pd
 from datetime import datetime
+import os
+
+# Asegura que la carpeta exista
+os.makedirs("data_output", exist_ok=True)
 
 # Extraemos los datos necesarios
 timestamp = data.get("timestamp")
